@@ -4,4 +4,4 @@ pydantic
 pydantic-settings
 python-dotenv
 httpx
-cors
+huggingface_hub
