@@ -9,7 +9,7 @@ class Settings(BaseSettings):
     
     # LLM
     HUGGINGFACE_API_KEY: str = ""
-    HF_MODEL_ID: str = "mistralai/Mistral-7B-Instruct-v0.2"
+    HF_MODEL_ID: str = ""
     
     # Security
     # In production, this MUST be set via environment variable

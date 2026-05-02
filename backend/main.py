@@ -10,11 +10,12 @@ app = FastAPI(
     debug=settings.DEBUG
 )
 
-# CORS - Allow all origins for now (lock down after verifying deployment works)
+# CORS configuration
+origins = settings.cors_origins_list
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=False,
+    allow_origins=origins,
+    allow_credentials="*" not in origins,
     allow_methods=["*"],
     allow_headers=["*"],
 )
