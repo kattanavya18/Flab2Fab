@@ -16,11 +16,12 @@ class Settings(BaseSettings):
     SECRET_KEY: str = os.getenv("SECRET_KEY", "dev-secret-key-change-me")
     
     # In production, this should be your frontend URL
-    # Can be a comma-separated string in environment variable
-    CORS_ORIGINS: List[str] = [
-        origin.strip() 
-        for origin in os.getenv("CORS_ORIGINS", "http://localhost:3000,http://127.0.0.1:3000,http://localhost:5173").split(",")
-    ]
+    # Can be "*" or a comma-separated string
+    CORS_ORIGINS: str = os.getenv("CORS_ORIGINS", "http://localhost:5173,http://127.0.0.1:5173")
+
+    @property
+    def cors_origins_list(self) -> List[str]:
+        return [origin.strip() for origin in self.CORS_ORIGINS.split(",")]
 
     model_config = SettingsConfigDict(
         env_file=os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), ".env"),
